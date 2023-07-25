@@ -5,20 +5,62 @@ import ProfileScreen from "../components/screens/Profile";
 import CategoriesScreen from "../components/screens/Categories";
 import MyOrdersScreen from "../components/screens/Myorders";
 import DashScreen from "../components/screens/Dashboard";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomDrawer() {
   return (
     <Tab.Navigator
-        screenOptions={{
-          tabBarStyle: { backgroundColor: '#232323' }, // Set the background color to black
-          activeTintColor: 'white', // Set the active tab text color to white
-          inactiveTintColor: 'gray', // Set the inactive tab text color to gray
-          borderTopLeftRadius: 30, // Set the top-left border radius
-          borderTopRightRadius: 30, // Set the top-right border radius
+        screenOptions={({route})=>({
+          tabBarStyle: { backgroundColor: '#232323',paddingTop:15,borderTopRightRadius:70,borderTopLeftRadius:70,},
           
-        }}
+          tabBarLabelStyle:{fontSize:13,color:'white'},
+
+          tabBarIcon:()=>{
+
+            let iconName,size;
+
+            if(route.name==='Home'){
+
+              iconName= "home";
+              
+            }
+
+            if(route.name==='Categories'){
+
+              iconName= "category";
+              
+            }
+
+            if(route.name==='Dash'){
+
+              iconName= "dashboard";
+              
+            }
+
+            if(route.name==='MyOrders'){
+
+              iconName= "border-all";
+              
+            }
+
+            if(route.name==='Profile'){
+
+              iconName= "6-ft-apart";
+              
+            }
+
+
+            
+
+            return(<MaterialIcons name={iconName} size={20} color={"white"}/>);
+          }
+
+          
+          
+        })}
+        
       >
         <Tab.Screen name="Home" component={Home} options={{headerShown:false,}}/>
         <Tab.Screen name="Categories" component={CategoriesScreen} options={{headerShown:false,}}/>
