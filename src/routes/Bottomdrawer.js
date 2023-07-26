@@ -6,6 +6,7 @@ import CategoriesScreen from "../components/screens/Categories";
 import MyOrdersScreen from "../components/screens/Myorders";
 import DashScreen from "../components/screens/Dashboard";
 import { MaterialIcons } from '@expo/vector-icons';
+import Homestack from "./homestack";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,7 @@ export default function BottomDrawer() {
           tabBarStyle: { backgroundColor: '#232323',paddingTop:15,borderTopRightRadius:70,borderTopLeftRadius:70,},
           
           tabBarLabelStyle:{fontSize:13,color:'white'},
+
 
           tabBarIcon:()=>{
 
@@ -62,7 +64,7 @@ export default function BottomDrawer() {
         })}
         
       >
-        <Tab.Screen name="Home" component={Home} options={{headerShown:false,}}/>
+        <Tab.Screen name="Home" component={Homestack} options={{headerShown:false,}}/>
         <Tab.Screen name="Categories" component={CategoriesScreen} options={{headerShown:false,}}/>
         <Tab.Screen name="Dash" component={DashScreen} options={{headerShown:false,}}/>
         <Tab.Screen name="MyOrders" component={MyOrdersScreen} options={{headerShown:false,}}/>
