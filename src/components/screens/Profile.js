@@ -1,14 +1,14 @@
 import React from "react"
-import { View,StyleSheet,Text } from "react-native";
+import { View,StyleSheet,Text,StatusBar } from "react-native";
 
 
 export default function ProfileScreen(){
 
     return(
         <View>
-            <View style={styles.top} >
-                <Text>Profile</Text>
-            </View>
+
+
+            <StatusBar backgroundColor="#ffa600"/>
         
                 
             
