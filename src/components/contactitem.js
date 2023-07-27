@@ -1,14 +1,16 @@
 import React from "react";
 import { StyleSheet,Text,TouchableOpacity,View } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export  default function ContactItem({item}){
-    console.log(item)
-
-    console.log('**************************')
     return(
         <TouchableOpacity >
             <View style={styles.item}>
-                <Text style={styles.text}>{item.name} </Text>
+                <MaterialIcons name="contacts" size={50} color="black" style={{marginLeft:10,marginRight:10,}} />
+                <View style={styles.textinside} >
+                    <Text style={styles.text}>{item.name} </Text>
+                    <Text style={{marginLeft:10,marginTop:10,}}>{item.mobile}</Text>
+                </View>
             </View>
         </TouchableOpacity>
     );
@@ -19,16 +21,16 @@ const styles=StyleSheet.create({
 
     item:{
         flexDirection:'row',
-        padding:16,
-        marginTop:16,
-        borderWidth:1,
-        borderStyle:'dotted',
-        borderRadius:10,
+        margin:20,
     },
 
     text:{
         marginLeft: 10,
-        fontSize:20,
+        fontSize:16,
+    },
+
+    textinside:{
+        flex:1,
     },
 
 

@@ -11,9 +11,13 @@ import ContactItem from "../contactitem";
 
 export default function Contacts({navigation}){
 
+    const { fab } = styles
+
     const contacturl='http://137.184.67.138:3004/viewAllContacts';
 
-    const [contacts,setContacts]=useState([])
+    const [contacts,setContacts]=useState([]);
+
+    const [names,setNames]=useState([]);
 
     const[searchquery,setsearchquery]=useState('');
 
@@ -21,14 +25,20 @@ export default function Contacts({navigation}){
 
     useEffect(()=>{
         axios.get( contacturl).then((res)=>{
-            setContacts(res.data);
+            const namesArray = res.data.data.map((item) => {
+                const {name, mobile} = item
+                return {name, mobile}
+            });
+
+            setNames(namesArray);
+            
         }).catch(err=>console.log(err))
     
     },[])
 
 
-    console.log("Contacts dashboard")
-    console.log(contacts)
+
+    
 
 
 
@@ -53,13 +63,13 @@ export default function Contacts({navigation}){
             />
             <Text>{searchquery}</Text>
             <FlatList
-                data={contacts}
-                keyExtractor={(item) => item._id} 
+                data={names}
+                keyExtractor={(item) => item.id} 
                 renderItem={({ item }) => <ContactItem item={item} />}
             />
 
             <FAB
-            style={styles.fab}
+            style={fab}
             icon={() => <MaterialIcons name="contact-page" size={24} color="white" />}
             onPress={() =>navigation.navigate('addcontacts') }
             />
@@ -72,7 +82,7 @@ const styles=StyleSheet.create({
     fab: {
         position: 'absolute',
         right: 28,
-        bottom: -550,
+        bottom: 200,
         backgroundColor: '#ffa600',
         borderRadius: 30,
         width: 60,
